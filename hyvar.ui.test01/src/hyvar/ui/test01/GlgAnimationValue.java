@@ -1,6 +1,5 @@
 
 package hyvar.ui.test01;
-import com.genlogic.*;
 
 //////////////////////////////////////////////////////////////////////////
 public class GlgAnimationValue
@@ -62,7 +61,7 @@ public class GlgAnimationValue
       
 
        case RANDOM_INT:
-         value = (double) ( (int) GlgObject.Rand( min, max ) );
+         value = ( (int) GlgObject.Rand( min, max ) );
          break;
 
        default:

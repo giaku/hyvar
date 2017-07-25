@@ -2,7 +2,6 @@ package hyvar.ui.test01;
 
 import java.awt.event.*;
 import javax.swing.*;
-import com.genlogic.*;
 
 //////////////////////////////////////////////////////////////////////////
 public class Animation extends GlgJBean implements ActionListener
@@ -52,7 +51,8 @@ public class Animation extends GlgJBean implements ActionListener
    public static void main( final String [] arg )
    {
       SwingUtilities.
-        invokeLater( new Runnable(){ public void run() { Main( arg ); } } );
+        invokeLater( new Runnable(){ @Override
+		public void run() { Main( arg ); } } );
    }
 
    //////////////////////////////////////////////////////////////////////////
@@ -60,7 +60,8 @@ public class Animation extends GlgJBean implements ActionListener
    {
       class DemoQuit extends WindowAdapter
       {
-         public void windowClosing( WindowEvent e ) { System.exit( 0 ); }
+         @Override
+		public void windowClosing( WindowEvent e ) { System.exit( 0 ); }
       } 
 
       JFrame frame = new JFrame( "HyVar Dashboard DEMO" );
@@ -165,7 +166,8 @@ public class Animation extends GlgJBean implements ActionListener
    //////////////////////////////////////////////////////////////////////////
    // ActionListener method to use the bean as update timer's ActionListener.
    //////////////////////////////////////////////////////////////////////////
-   public void actionPerformed( ActionEvent e )
+   @Override
+public void actionPerformed( ActionEvent e )
    {
       UpdateControls();
    }
@@ -246,7 +248,8 @@ public class Animation extends GlgJBean implements ActionListener
          value = value_p;
       }
 
-      public void run()
+      @Override
+	public void run()
       {
          if( request_name.equals( "Start" ) )
            bean.StartUpdate();

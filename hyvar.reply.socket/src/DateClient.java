@@ -1,7 +1,9 @@
 
 
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.ServerSocket;
 import java.net.Socket;
 
 /**
@@ -26,8 +28,8 @@ public class DateClient {
     public static void main(String[] args) throws IOException {
        
         Socket s = new Socket("localhost", 3331);
-        Socket out = new Socket("localhost", 3332);
-        PrintWriter pw = new PrintWriter(out.getOutputStream(),true);
+        Socket out = new Socket("localhost", 3335);
+        DataOutputStream outStream = new DataOutputStream(out.getOutputStream());
         // buffer to read the whole message
         byte[] buffer = new byte[MSG_SIZE];
         
@@ -58,8 +60,11 @@ public class DateClient {
         		byte[] readValue = {buffer[i+3],buffer[i+2],buffer[i+1],buffer[i]};
                 System.out.println("Bytes: " + stringifyBytes(readValue) + " " +
                 				   "Value: " + num[j]);
-                pw.print(num[j]);
         	}
+        	//Send data
+        	for(int val : num)
+        		outStream.writeInt(val);
+        	
         	System.out.println("END VALUES\n\n");
         	
         	if(msgCount == 9)

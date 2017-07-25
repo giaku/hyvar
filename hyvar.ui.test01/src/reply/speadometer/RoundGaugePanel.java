@@ -63,6 +63,7 @@ g.drawString("100%", centerX + 15, centerY + 55);
  
 }
  
+@Override
 public void paintComponent(Graphics g){
 Color oldColor;
 oldColor = g.getColor();
@@ -81,6 +82,7 @@ g.setColor(Color.black);
 g.drawString(""+ value, centerX - 10, centerY + 30);
 g.setColor(oldColor);
 }
+@Override
 public void run() {
 int oldValue = 32768;
 while ( true ) {

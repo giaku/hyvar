@@ -1,8 +1,6 @@
 package reply.speadometer;
 
-import javax.swing.JComponent;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 public class DrawSpeadometer {
 	private void jPannel()

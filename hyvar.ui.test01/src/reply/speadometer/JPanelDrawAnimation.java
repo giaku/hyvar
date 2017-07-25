@@ -14,6 +14,7 @@ public class JPanelDrawAnimation extends JFrame
 	    MyJPanel()
 	    {
 		 ActionListener counter = new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent evt) 
 			{ 
 			      repaint();
@@ -22,7 +23,8 @@ public class JPanelDrawAnimation extends JFrame
 		 new Timer(delay, counter).start();
 	    }
 
-	    public void paintComponent(Graphics g)
+	    @Override
+		public void paintComponent(Graphics g)
 	    {
 		super.paintComponent(g);
 		//super.paintComponent(g1);
