@@ -66,19 +66,11 @@ public class DateClient {
         		outStream.writeInt(val);
         	
         	System.out.println("END VALUES\n\n");
-        	
+        	/*
         	if(msgCount == 9)
-        		break;
+        		break;*/
         	
         	msgCount++;
-        	
-        	try {
-        		// fake long processing
-				Thread.sleep(100);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
         	
         } while (msgCount != -1);
         

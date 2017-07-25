@@ -1,6 +1,9 @@
 
 package hyvar.ui.test01;
 
+import com.genlogic.GlgJBean;
+import com.genlogic.GlgObject;
+
 //////////////////////////////////////////////////////////////////////////
 public class GlgAnimationValue2
 {

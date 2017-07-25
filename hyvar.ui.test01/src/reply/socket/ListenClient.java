@@ -3,16 +3,15 @@ package reply.socket;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Trivial client for the date server.
  */
 public class ListenClient {
 
-	//private static final String serverAddress = "localhost";
-	private static final int serverPort = 3335;
-	// Number of integers per message
-	private static final int VALUES_NO = 6;
+	
 	
     /**
      * Runs the client as an application.  First it displays a dialog
@@ -21,28 +20,28 @@ public class ListenClient {
      * it serves.
      */
 	//10.38.103.38 myIP
-    public static void main(String[] args) throws IOException {
+    public static List<Integer> readMessage(DataInputStream input, int values_no) {
         /*String serverAddress = JOptionPane.showInputDialog(
             "Enter IP Address of a machine that is\n" +
             "running the date service on port 9090:");*/
-        ServerSocket s = new ServerSocket(serverPort);
-        DataInputStream input = new DataInputStream(s.accept().getInputStream());
-        int[] num = new int[VALUES_NO];
         
-        while(true) {
-        	System.out.println("Listening...");
-	        for(int i = 0; i < VALUES_NO; i++){
-        		num[i] = input.readInt();
-        		//JOptionPane.showMessageDialog(null, answer);
-        		System.out.println(num[i]);
-        	}
-	        try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+        int[] num = new int[values_no];
+        byte msgCount = 0;
+        
+    	//System.out.println("Listening...");
+    	ArrayList<Integer> datagram = new ArrayList<>();
+        for(int i = 0; i < values_no; i++) {
+    		try {
+				num[i] = input.readInt();
+			} catch (IOException e) {
+				return null;
 			}
-        }
+    		datagram.add(num[i]);
+    		//JOptionPane.showMessageDialog(null, answer);
+    		System.out.println(num[i]);
+    	}
+        msgCount++;
+        return datagram;
         //System.exit(0);
     }
 }

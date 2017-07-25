@@ -1,7 +1,18 @@
 package hyvar.ui.test01;
 
 import java.awt.event.*;
+import java.io.DataInputStream;
+import java.io.File;
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.util.List;
+
 import javax.swing.*;
+
+import com.genlogic.GlgJBean;
+import com.genlogic.GlgObject;
+
+import reply.socket.ListenClient;
 
 //////////////////////////////////////////////////////////////////////////
 public class Animation extends GlgJBean implements ActionListener
@@ -10,12 +21,21 @@ public class Animation extends GlgJBean implements ActionListener
    // The main demo class
    //////////////////////////////////////////////////////////////////////////
    static final long serialVersionUID = 0;
-
-   static final int NUM_VALUES = 25;
+   
+   //Socket port;
+   private static final int serverPort = 3335;
+   
+   // Number of integers per message
+   private static final int NUM_VALUES = 6;
+   
+   static final String FILE_SEP = File.separator;
+   
    boolean PerformUpdates = true;
    GlgAnimationValue [] animation_array = new GlgAnimationValue[ NUM_VALUES ];
    static boolean AntiAliasing = true;
-
+   static ServerSocket s;
+   static DataInputStream socketInputStream;
+   
    Timer timer = null;
 
    //////////////////////////////////////////////////////////////////////////
@@ -39,7 +59,7 @@ public class Animation extends GlgJBean implements ActionListener
          // Restart the timer after each update (instead of using repeats)
          // to avoid flooding the event queue with timer events on slow 
          // machines.
-         timer = new Timer( 350, this );
+         timer = new Timer( 20, this );
          timer.setRepeats( false );
          timer.start();
       }
@@ -82,8 +102,21 @@ public class Animation extends GlgJBean implements ActionListener
       // Loading the drawing triggers ReadyCallback which starts updates.
       //
       //controls.SetDrawingName( "C:\\eclipseHyVar\\mila_test01\\hyvar.ui.test01\\src\\hyvar\\ui\\test01\\controls_updated.g" );
-      controls.SetDrawingName( "C:\\eclipseHyVar\\mila_test01\\hyvar.ui.test01\\src\\hyvar\\ui\\test01\\003.g" );
+      
+      /* Print current relative path
+      Path currentRelativePath = Paths.get("");
+      String s = currentRelativePath.toAbsolutePath().toString();
+      System.out.println("Current relative path is: " + s);*/
+      controls.SetDrawingName( "src"+FILE_SEP+"hyvar"+FILE_SEP+"ui"+FILE_SEP+"test01"+FILE_SEP+"003.g" );
       //controls.SetDrawingName( "C:\\eclipseHyVar\\mila_test01\\hyvar.ui.test01\\src\\hyvar\\ui\\test01\\controls_1.g" );
+      
+      try {
+  		s = new ServerSocket(serverPort);
+  		socketInputStream = new DataInputStream(s.accept().getInputStream());
+  	  } catch (IOException e) {
+  		System.out.println(e.getMessage());
+  		e.printStackTrace();
+  	  }
    }
 
    //////////////////////////////////////////////////////////////////////////
@@ -92,13 +125,27 @@ public class Animation extends GlgJBean implements ActionListener
       if( timer == null )
         return;   // Prevents race conditions
 
-      if( PerformUpdates )
+      List<Integer> message = null;
+      
+      if( PerformUpdates)
       {
-         // Update all animation_values
-         for( int i=0; i < NUM_VALUES; ++i )
-           if( animation_array[ i ] != null )
-             animation_array[ i ].Iterate();
+    	 
+    	 message = ListenClient.readMessage(socketInputStream, NUM_VALUES);
+    	 
+         /*if(message!=null) {
+         /*for(int val : message){
+        	 this.SetDResource("Speedometer/Value", message.get(0)+val);
+        	 this.SetDResource("TextBoxMi1/Value", message.get(1));
+        	 }}*/
+         
+      
+      
+	   // Update all animation_values
+	      for( int i=0; i < NUM_VALUES; ++i )
+	        if( animation_array[ i ] != null )
+	          animation_array[ i ].Iterate(message.get(i+1));
 
+      
          Update();   // Show changes
       }
 
@@ -144,16 +191,17 @@ public class Animation extends GlgJBean implements ActionListener
       // Initilize simulation controlling parameters
 
       /* 3 top gages */
-     animation_array[ 0 ] =
-        new GlgAnimationValue( this, GlgAnimationValue.SIN,
-                              0, 47, 10.0, 250.0, "Seedometer/Value" );
+	   animation_array[ 0 ] =
+		       new GlgAnimationValue(this, 10,//GlgAnimationValue.SIN,
+		                              0, 47, 0, 999999999, "Seedometer/Value");
+	   
+       animation_array [1] = 
+    	       new GlgAnimationValue(this, 10,//GlgAnimationValue.RANDOM,
+			  	                      0, 1, 1, 6, "TextBoxMi1/Value");
      
-     animation_array [1] = 
-    	new GlgAnimationValue(this, GlgAnimationValue.RANDOM,
-				0,1,1,6,"TextBoxMi1/Value");
-     
-     animation_array [2] = new GlgAnimationValue(this, GlgAnimationValue.RANDOM,
-				0,1,0,1,"Gear/Visibility");
+       animation_array [2] = 
+    		   new GlgAnimationValue(this, 10,//GlgAnimationValue.RANDOM,
+				                      0, 1, 0, 1, "Gear/Visibility");
      /*animation_array[ 2 ] =
     	        new GlgAnimationValue( this, GlgAnimationValue.RANDOM,
     	                              0, 100, 0.0, 3.0, "Light1/Value" );
@@ -218,6 +266,7 @@ public void actionPerformed( ActionEvent e )
          timer.stop();
          timer = null;
       }
+      
    }
 
    //////////////////////////////////////////////////////////////////////////

@@ -1,6 +1,9 @@
 
 package hyvar.ui.test01;
 
+import com.genlogic.GlgJBean;
+import com.genlogic.GlgObject;
+
 //////////////////////////////////////////////////////////////////////////
 public class GlgAnimationValue
 {
@@ -34,7 +37,7 @@ public class GlgAnimationValue
    }
 
    //////////////////////////////////////////////////////////////////////////
-   public void Iterate()
+   public void Iterate(int v)
    { 
       double angle, value;
 
@@ -63,9 +66,11 @@ public class GlgAnimationValue
        case RANDOM_INT:
          value = ( (int) GlgObject.Rand( min, max ) );
          break;
-
+       case 10:
+    	   value = v;
+    	   break;
        default:
-         System.out.println( "Invalid animation type." );
+         //System.out.println( "Invalid animation type." );
          value = 0.0;
          break;
       }

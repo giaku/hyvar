@@ -6,5 +6,8 @@
 	<classpathentry kind="lib" path="websocket-client-9.4.5.v20170502.jar"/>
 	<classpathentry kind="lib" path="websocket-server-9.4.5.v20170502.jar"/>
 	<classpathentry kind="lib" path="websocket-api-9.0.0.rc0.jar"/>
+	<classpathentry kind="lib" path="lib/GlgCE.jar"/>
+	<classpathentry kind="lib" path="lib/GlgGraphLayout.jar"/>
+	<classpathentry kind="lib" path="lib/GlgServerCE.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

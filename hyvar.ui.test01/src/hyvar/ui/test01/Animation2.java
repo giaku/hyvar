@@ -3,6 +3,9 @@ package hyvar.ui.test01;
 import java.awt.event.*;
 import javax.swing.*;
 
+import com.genlogic.GlgJBean;
+import com.genlogic.GlgObject;
+
 //////////////////////////////////////////////////////////////////////////
 public class Animation2 extends GlgJBean implements ActionListener
 {
