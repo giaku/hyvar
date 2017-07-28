@@ -1,8 +1,9 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>eu.hyvar.reply.ecu_java_codeExec</groupId>
   <artifactId>eu.hyvar.reply.ecu_java_codeExec</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
   <build>
     <sourceDirectory>src</sourceDirectory>
     <plugins>
@@ -13,15 +14,34 @@
           <source>1.8</source>
           <target>1.8</target>
         </configuration>
-       <dependencies>
-        <!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
-<dependency>
-    <groupId>com.googlecode.json-simple</groupId>
-    <artifactId>json-simple</artifactId>
-    <version>1.1</version>
-</dependency>
-</dependencies>
+       	<dependencies>
+        	<!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
+			<dependency>
+    			<groupId>com.googlecode.json-simple</groupId>
+    			<artifactId>json-simple</artifactId>
+    			<version>1.1</version>
+			</dependency>
+		</dependencies>
       </plugin>
+      
+       
+      <plugin>
+      	<groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.0.0</version>
+        <configuration>
+          	<archive>
+      			<manifest>
+       				<addClasspath>true</addClasspath>
+       				<mainClass>hyvar.statemachine.execution/ECU_B_main</mainClass>
+      			</manifest>
+     		</archive>
+            <packagingExcludes>resources/*</packagingExcludes>
+        	<excludes><exclude>hyvar/statemachine/features/GearAdviceFeature.class</exclude></excludes>
+        </configuration>
+      </plugin>
+      
+      
     </plugins>
   </build>
 </project>

@@ -24,9 +24,9 @@ public class DateClient {
      * the date server, then connects to it and displays the date that
      * it serves.
      */
-	//10.38.103.38 myIP
+	
     public static void main(String[] args) throws IOException {
-       
+        
         Socket s = new Socket("localhost", 3331);
         Socket out = new Socket("localhost", 3335);
         DataOutputStream outStream = new DataOutputStream(out.getOutputStream());

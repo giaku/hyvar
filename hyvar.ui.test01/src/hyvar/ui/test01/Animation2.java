@@ -100,7 +100,7 @@ public class Animation2 extends GlgJBean implements ActionListener
          // Update all animation_values
          for( int i=0; i < NUM_VALUES; ++i )
            if( animation_array[ i ] != null )
-             animation_array[ i ].Iterate();
+             animation_array[ i ].Iterate(0);
 
          Update();   // Show changes
       }
