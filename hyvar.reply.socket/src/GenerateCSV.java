@@ -22,10 +22,10 @@ public class GenerateCSV {
 			}
 			lastGear=gear;
 			gear = speed / 50 + 1;
-			if(lastGear<gear)
-				rpm-=1100;
+			if(lastGear<gear && lastGear!=0)
+				rpm-=1500;
 			else if(lastGear>gear)
-				rpm+=1200;
+				rpm+=1500;
 			brake = speed < 200 && speed >= 0 && !acc ? 1:0;
 			if(speed==250 || speed==0)
 				acc = !acc;
@@ -43,21 +43,21 @@ public class GenerateCSV {
 				else if(s<40)
 					rpm+=20;
 				else
-					rpm+=15;
+					rpm+=10;
 			}
 			else
 			{
 				speed--;
 				if((s = speed%50) < 10)
-					rpm-=40;
+					rpm-=20;
 				else if(s<20)
-					rpm-=40;
+					rpm-=25;
 				else if(s<30)
-					rpm-=40;
+					rpm-=30;
 				else if(s<40)
 					rpm-=40;
 				else
-					rpm-=40;
+					rpm-=45;
 			}
 			
 		}
