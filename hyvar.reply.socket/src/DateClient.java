@@ -61,6 +61,7 @@ public class DateClient {
                 System.out.println("Bytes: " + stringifyBytes(readValue) + " " +
                 				   "Value: " + num[j]);
         	}
+        	num[5]=operate(num[4],num[2]);
         	//Send data
         	for(int val : num)
         		outStream.writeInt(val);
@@ -133,4 +134,28 @@ public class DateClient {
     		}
     	}
     }
+    
+    private static final float finalTransmissionRatios[] = {12.56f,6.791f,4.651f,3.447f,2.535f,2.197f,11.832f};
+	private static final int rangeMedian = (1500+2700)/2;
+	
+	public static int operate(int RPM, int GEAR) {
+		int suggestedGear = 0;
+		int rpm = RPM;
+		int currentGear = GEAR;
+		int bestRpmDiff = 16382, rpmDiff;
+		if(currentGear > 0) {
+			for(int i=0;i<6;i++) {
+				rpmDiff = Math.round( Math.abs(
+						(rpm * finalTransmissionRatios[i] / finalTransmissionRatios[currentGear-1])
+							- rangeMedian));
+				if(rpmDiff<bestRpmDiff) {
+					bestRpmDiff = rpmDiff;
+					suggestedGear = i+1;
+				}
+			}
+			//System.out.println("Gear suggested: "+suggestedGear);
+			return suggestedGear;
+		}
+		return 0;
+	}
 }
