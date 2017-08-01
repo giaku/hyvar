@@ -61,6 +61,8 @@ public class GenerateCSV {
 			}
 			
 		}
+		if(speed == 0)
+			rpm=0;
 		writer.close();
 	}
 
