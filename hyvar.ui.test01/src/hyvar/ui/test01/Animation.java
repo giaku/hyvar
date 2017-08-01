@@ -59,7 +59,7 @@ public class Animation extends GlgJBean implements ActionListener
          // Restart the timer after each update (instead of using repeats)
          // to avoid flooding the event queue with timer events on slow 
          // machines.
-         timer = new Timer( 20, this );
+         timer = new Timer( 30, this );
          timer.setRepeats( false );
          timer.start();
       }
@@ -141,11 +141,19 @@ public class Animation extends GlgJBean implements ActionListener
       
       
 	   // Update all animation_values
-	      for( int i=0; i < NUM_VALUES; ++i )
-	        if( animation_array[ i ] != null )
-	          animation_array[ i ].Iterate(message.get(i+1));
-
-      
+	      /**for( int i=0; i < NUM_VALUES; ++i )
+	        if( animation_array[i] != null )
+	          animation_array[i].Iterate(message.get(i+1));**/
+	      //speed
+	      animation_array[0].Iterate(message.get(1));
+	      //suggested gear
+	      //animation_array[1].Iterate(message.get(5));
+	      //pedal brake
+	      animation_array[2].Iterate(message.get(3));
+	      //current gear
+	      animation_array[3].Iterate(message.get(2));
+	      //rpm
+	      animation_array[4].Iterate(message.get(4));
          Update();   // Show changes
       }
 
@@ -191,22 +199,23 @@ public class Animation extends GlgJBean implements ActionListener
       // Initilize simulation controlling parameters
 
       /* 3 top gages */
-	   animation_array[ 0 ] =
+	   animation_array[0] =
 		       new GlgAnimationValue(this, 10,//GlgAnimationValue.SIN,
 		                              0, 47, 0, 999999999, "Seedometer/Value");
 	   
-       animation_array [1] = 
+       animation_array[1] = 
     	       new GlgAnimationValue(this, 10,//GlgAnimationValue.RANDOM,
 			  	                      0, 1, 1, 6, "TextBoxMi1/Value");
      
-       animation_array [2] = 
+       animation_array[2] = 
     		   new GlgAnimationValue(this, 10,//GlgAnimationValue.RANDOM,
 				                      0, 1, 0, 1, "Gear/Visibility");
-     /*animation_array[ 2 ] =
-    	        new GlgAnimationValue( this, GlgAnimationValue.RANDOM,
-    	                              0, 100, 0.0, 3.0, "Light1/Value" );
-      /*animation_array [1] = new GlgAnimationValue(this, GlgAnimationValue.RANDOM,
-    		  					0,1,1,6,"Element/Value");*/
+       animation_array[3] =
+    	       new GlgAnimationValue(this, 10,//GlgAnimationValue.RANDOM,
+    	                              0, 1, 0, 8, "GearValue1/Value" );
+       animation_array[4] =
+    		   new GlgAnimationValue(this, 10,//GlgAnimationValue.RANDOM,
+    		  						  0, 1, 0, 5000,"Giri1/Value");
     
    }
 

@@ -9,7 +9,7 @@ public class GenerateCSV {
 		// TODO Auto-generated method stub
 		PrintWriter writer = null;
 		try {
-			writer = new PrintWriter("the-file-name.csv", "UTF-8");
+			writer = new PrintWriter("CAN_500X_20170216_2.csv", "UTF-8");
 		} catch (FileNotFoundException | UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
@@ -49,15 +49,15 @@ public class GenerateCSV {
 			{
 				speed--;
 				if((s = speed%50) < 10)
-					rpm-=36;
+					rpm-=40;
 				else if(s<20)
-					rpm-=36;
+					rpm-=40;
 				else if(s<30)
-					rpm-=36;
+					rpm-=40;
 				else if(s<40)
-					rpm-=36;
+					rpm-=40;
 				else
-					rpm-=36;
+					rpm-=40;
 			}
 			
 		}
