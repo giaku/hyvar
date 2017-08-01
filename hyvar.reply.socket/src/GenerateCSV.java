@@ -25,7 +25,7 @@ public class GenerateCSV {
 			if(lastGear<gear && lastGear!=0)
 				rpm-=1500;
 			else if(lastGear>gear)
-				rpm+=1500;
+				rpm+=1200;
 			brake = speed < 200 && speed >= 0 && !acc ? 1:0;
 			if(speed==250 || speed==0)
 				acc = !acc;

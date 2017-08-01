@@ -46,7 +46,7 @@
       			</manifest>
      		</archive>
             <packagingExcludes>resources/*</packagingExcludes>
-        	<excludes><exclude>hyvar/statemachine/features/GearAdviceFeature.class</exclude></excludes>
+        	<excludes><exclude>hyvar/statemachine/features/StartStopFeature.class</exclude></excludes>
         </configuration>
       </plugin>
       
