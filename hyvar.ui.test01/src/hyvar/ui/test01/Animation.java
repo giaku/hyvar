@@ -107,6 +107,7 @@ public class Animation extends GlgJBean implements ActionListener
       Path currentRelativePath = Paths.get("");
       String s = currentRelativePath.toAbsolutePath().toString();
       System.out.println("Current relative path is: " + s);*/
+      //controls.SetDrawingName( "src"+FILE_SEP+"hyvar"+FILE_SEP+"ui"+FILE_SEP+"test01"+FILE_SEP+"003.g" );
       controls.SetDrawingName( "src"+FILE_SEP+"hyvar"+FILE_SEP+"ui"+FILE_SEP+"test01"+FILE_SEP+"003.g" );
       //controls.SetDrawingName( "C:\\eclipseHyVar\\mila_test01\\hyvar.ui.test01\\src\\hyvar\\ui\\test01\\controls_1.g" );
       
@@ -147,7 +148,7 @@ public class Animation extends GlgJBean implements ActionListener
 	      //speed
 	      animation_array[0].Iterate(message.get(1));
 	      //suggested gear
-	      //animation_array[1].Iterate(message.get(5));
+	      animation_array[1].Iterate(message.get(5));
 	      //pedal brake
 	      animation_array[2].Iterate(message.get(3));
 	      //current gear

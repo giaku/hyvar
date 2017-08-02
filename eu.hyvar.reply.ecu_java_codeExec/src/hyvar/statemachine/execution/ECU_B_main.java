@@ -1,10 +1,8 @@
 package hyvar.statemachine.execution;
 
-import org.yakindu.scr.ecu_b.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -13,7 +11,6 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.net.Socket;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -34,7 +31,6 @@ import org.json.simple.*;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.yakindu.scr.ecu_b.ECU_BStatemachine;
-import org.yakindu.scr.ecu_b.ECU_BStatemachine.State;
 import org.yakindu.scr.ecu_b.IECU_BStatemachine.SCIDataBOperationCallback;
 
 import hyvar.statemachine.features.JavaFeature;
