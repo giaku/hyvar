@@ -5,6 +5,7 @@ import java.io.DataInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.net.ServerSocket;
+import java.net.URL;
 import java.util.List;
 
 import javax.swing.*;
@@ -109,6 +110,10 @@ public class Animation extends GlgJBean implements ActionListener
       System.out.println("Current relative path is: " + s);*/
       //controls.SetDrawingName( "src"+FILE_SEP+"hyvar"+FILE_SEP+"ui"+FILE_SEP+"test01"+FILE_SEP+"003.g" );
       controls.SetDrawingName( "src"+FILE_SEP+"hyvar"+FILE_SEP+"ui"+FILE_SEP+"test01"+FILE_SEP+"003.g" );
+      //controls.SetDrawingName( "003.g" );
+      //URL url = Animation.class.getResource("../../../003.g");
+      //BufferedReader reader = new BufferedReader(new InputStreamReader(Animation.class.getResourceAsStream("/file.txt")));
+      //controls.SetDrawingURL("003.g");
       //controls.SetDrawingName( "C:\\eclipseHyVar\\mila_test01\\hyvar.ui.test01\\src\\hyvar\\ui\\test01\\controls_1.g" );
       
       try {
