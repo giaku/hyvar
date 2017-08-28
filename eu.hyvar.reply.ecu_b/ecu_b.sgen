@@ -1,0 +1,16 @@
+GeneratorModel for yakindu::java {
+
+	statechart ECU_B {
+
+		feature Outlet {
+			targetProject = "eu.hyvar.reply.ecu_b"
+			targetFolder = "src-gen"
+			libraryTargetFolder = "src"
+		}
+		feature GeneralFeatures {
+			TimerService = true
+			
+		}
+	}
+	
+}

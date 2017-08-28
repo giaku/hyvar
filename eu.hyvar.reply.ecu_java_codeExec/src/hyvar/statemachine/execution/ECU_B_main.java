@@ -66,9 +66,9 @@ public class ECU_B_main implements SCIDataBOperationCallback {
 		/* MAIN DEFAULT BEHAVIOR */
 		
 		//Read and parse retrieved CAN data
-		values = new ArrayList<>();//readMessage();
+		values = readMessage();
 		
-		updateFeatures();//da togliereeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+		//updateFeatures();//da togliereeeeeeeeeeeeeeeeeeeeeeeeeeeeee
 		
 		/* MAIN VARIABLE BEHAVIOR */
 		
