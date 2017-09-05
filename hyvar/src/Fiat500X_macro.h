@@ -1,0 +1,9 @@
+#ifndef FIAT500MACRO_H_INCLUDED
+#define FIAT500MACRO_H_INCLUDED
+
+
+#define N_GEARS 6
+#define RPM_MIN 1500
+#define RPM_MAX 2700
+
+#endif
