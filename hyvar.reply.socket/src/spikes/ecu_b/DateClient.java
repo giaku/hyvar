@@ -27,8 +27,8 @@ public class DateClient {
 	public static void main(String[] args) throws IOException {
         
         Socket s = new Socket("localhost", 3331);
-        Socket out = new Socket("localhost", 3339);
-        DataOutputStream outStream = new DataOutputStream(out.getOutputStream());
+        //Socket out = new Socket("localhost", 3339);
+        //DataOutputStream outStream = new DataOutputStream(out.getOutputStream());
         // buffer to read the whole message
         byte[] buffer = new byte[MSG_SIZE];
         
@@ -57,13 +57,14 @@ public class DateClient {
         		// parse the bytes
         		num[j] = parseInteger(value);
         		byte[] readValue = {buffer[i+3],buffer[i+2],buffer[i+1],buffer[i]};
-                System.out.println("Bytes: " + stringifyBytes(readValue) + " " +
+        		String what = j==0 ? "Timestamp " : j==1 ? "Brake " : j==2? "Speed " : j==3 ? "Torque " : j==4 ? "Rpm " : "Gear ";
+                System.out.println(what+"Bytes: " + stringifyBytes(readValue) + " " +
                 				   "Value: " + num[j]);
         	}
         	//num[5]=operate(num[4],num[2]);
         	//Send data
-        	for(int val : num)
-        		outStream.writeInt(val);
+        	//for(int val : num)
+        	//	outStream.writeInt(val);
         	
         	System.out.println("END VALUES\n\n");
         	/*
@@ -78,8 +79,8 @@ public class DateClient {
 				e.printStackTrace();
 			}
         } while (msgCount != -1);
-        out.close();
-        outStream.close();
+       // out.close();
+        //outStream.close();
         System.exit(0);
     }
     /**
