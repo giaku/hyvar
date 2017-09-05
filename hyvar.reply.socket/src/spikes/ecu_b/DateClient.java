@@ -9,13 +9,13 @@ import java.net.Socket;
  */
 public class DateClient {
 
-	// Message size in bytes
-	private static final int MSG_SIZE = 24;
 	// Integer size in bytes
 	private static final int VALUE_SIZE = 4;
 	// Number of integers per message
-	private static final int VALUES_NO = 6;
-	
+	private static final int VALUES_NO = 8;
+	// Message size in bytes
+	private static final int MSG_SIZE = VALUES_NO*VALUE_SIZE;
+		
     /**
      * Runs the client as an application.  First it displays a dialog
      * box asking for the IP address or hostname of a host running
@@ -56,8 +56,9 @@ public class DateClient {
         		value[3] = buffer[i];
         		// parse the bytes
         		num[j] = parseInteger(value);
+        		
         		byte[] readValue = {buffer[i+3],buffer[i+2],buffer[i+1],buffer[i]};
-        		String what = j==0 ? "Timestamp " : j==1 ? "Brake " : j==2? "Speed " : j==3 ? "Torque " : j==4 ? "Rpm " : "Gear ";
+        		String what = j==0 ? "Timestamp " : j==1 ? "Brake " : j==2? "Speed " : j==3 ? "Torque " : j==4 ? "Rpm " : j==5 ? "Gear " : j==6 ? "Lat acc " : "Long acc ";
                 System.out.println(what+"Bytes: " + stringifyBytes(readValue) + " " +
                 				   "Value: " + num[j]);
         	}
